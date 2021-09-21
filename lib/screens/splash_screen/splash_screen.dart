@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/screens/splash_screen/getting_started.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,6 +10,15 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 5), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => GettingStarted()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
