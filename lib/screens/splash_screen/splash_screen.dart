@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/screens/splash_screen/getting_started.dart';
+import 'package:foodapp/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/food.png',
+              Constants.imageAsset(
+                'food.png',
+              ),
             ),
             Text(
               'No waiting for food',
