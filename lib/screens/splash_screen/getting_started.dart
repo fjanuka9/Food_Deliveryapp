@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/screens/login_screen/login_screen.dart';
 import 'package:foodapp/utils/app_colors.dart';
 import 'package:foodapp/utils/constants.dart';
+import 'package:foodapp/utils/util_function.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GettingStarted extends StatefulWidget {
@@ -189,7 +191,9 @@ class bottomSection extends StatelessWidget {
                   width: 5,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    UtilFunction.navigateTo(context, LoginPage());
+                  },
                   child: Text(
                     'Skip',
                     style: TextStyle(
