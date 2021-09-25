@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/utils/app_colors.dart';
 
 // ignore: must_be_immutable
-class CustomTextField extends StatelessWidget {
-  CustomTextField({
+class CutomTextField extends StatelessWidget {
+  CutomTextField({
     Key? key,
     required this.controller,
   }) : super(key: key);
   var controller = TextEditingController();
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           filled: true,
           fillColor: kwhite,

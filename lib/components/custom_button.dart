@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/utils/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CutomButton extends StatelessWidget {
-  const CutomButton({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     Key? key,
     required this.onTap,
     required this.text,
-  }) : super(
-          key: key,
-        );
+  }) : super(key: key);
 
   final Function() onTap;
   final String text;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         height: 60,
         width: double.infinity,

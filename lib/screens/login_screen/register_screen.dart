@@ -5,8 +5,9 @@ import 'package:foodapp/components/custom_button.dart';
 import 'package:foodapp/components/custom_header.dart';
 import 'package:foodapp/components/custom_text_field.dart';
 import 'package:foodapp/utils/app_colors.dart';
-import 'package:foodapp/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -21,6 +22,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final _password = TextEditingController();
   final _name = TextEditingController();
   final _phonenumber = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -56,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 6,
                       ),
-                      CustomTextField(
+                      CutomTextField(
                         controller: _name,
                       ),
                       Text(
@@ -70,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 6,
                       ),
-                      CustomTextField(
+                      CutomTextField(
                         controller: _email,
                       ),
                       Text(
@@ -84,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 6,
                       ),
-                      CustomTextField(
+                      CutomTextField(
                         controller: _phonenumber,
                       ),
                       Text(
@@ -137,9 +141,51 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 35,
                       ),
-                      CutomButton(
+                      CustomButton(
                         text: "Register",
-                        onTap: () {},
+                        onTap: () async {
+                          if (inputValidation()) {
+                            try {
+                              UserCredential userCredential = await FirebaseAuth
+                                  .instance
+                                  .createUserWithEmailAndPassword(
+                                      email: _email.text,
+                                      password: _password.text);
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'weak-password') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.ERROR,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title: 'The password provided is too weak.',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {},
+                                )..show();
+                              } else if (e.code == 'email-already-in-use') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.ERROR,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title:
+                                      'The account already exists for that email.',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {},
+                                )..show();
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
+                          } else {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.ERROR,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: 'Please enter correct information.',
+                              btnCancelOnPress: () {},
+                              btnOkOnPress: () {},
+                            )..show();
+                          }
+                        },
                       ),
                     ],
                   ),

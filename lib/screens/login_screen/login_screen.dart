@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 6,
                           ),
-                          CustomTextField(
+                          CutomTextField(
                             controller: _email,
                           ),
                           Text(
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 35,
                           ),
-                          CutomButton(
+                          CustomButton(
                             text: "Sign In",
                             onTap: () {},
                           ),

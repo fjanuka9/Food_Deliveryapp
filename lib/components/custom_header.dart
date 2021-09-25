@@ -6,10 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomHeader extends StatelessWidget {
   const CustomHeader({
     Key? key,
+    required this.size,
     required this.image,
     required this.header,
     required this.tagline,
-    required this.size,
   }) : super(key: key);
 
   final Size size;
