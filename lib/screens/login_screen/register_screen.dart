@@ -2,9 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/components/custom_button.dart';
+import 'package:foodapp/components/custom_dialogbox.dart';
 import 'package:foodapp/components/custom_header.dart';
 import 'package:foodapp/components/custom_text_field.dart';
+import 'package:foodapp/controllers/auth_controller.dart';
+import 'package:foodapp/screens/login_screen/login_screen.dart';
 import 'package:foodapp/utils/app_colors.dart';
+import 'package:foodapp/utils/util_function.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -145,45 +149,20 @@ class _RegisterPageState extends State<RegisterPage> {
                         text: "Register",
                         onTap: () async {
                           if (inputValidation()) {
-                            try {
-                              UserCredential userCredential = await FirebaseAuth
-                                  .instance
-                                  .createUserWithEmailAndPassword(
-                                      email: _email.text,
-                                      password: _password.text);
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'weak-password') {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.ERROR,
-                                  animType: AnimType.BOTTOMSLIDE,
-                                  title: 'The password provided is too weak.',
-                                  btnCancelOnPress: () {},
-                                  btnOkOnPress: () {},
-                                )..show();
-                              } else if (e.code == 'email-already-in-use') {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.ERROR,
-                                  animType: AnimType.BOTTOMSLIDE,
-                                  title:
-                                      'The account already exists for that email.',
-                                  btnCancelOnPress: () {},
-                                  btnOkOnPress: () {},
-                                )..show();
-                              }
-                            } catch (e) {
-                              print(e);
-                            }
+                            await AuthController().registerUser(
+                              context,
+                              _email.text,
+                              _password.text,
+                              _name.text,
+                              _phonenumber.text,
+                            );
                           } else {
-                            AwesomeDialog(
-                              context: context,
-                              dialogType: DialogType.ERROR,
-                              animType: AnimType.BOTTOMSLIDE,
-                              title: 'Please enter correct information.',
-                              btnCancelOnPress: () {},
-                              btnOkOnPress: () {},
-                            )..show();
+                            DialogBox().dialogBox(
+                              context,
+                              DialogType.ERROR,
+                              'Incorrect information.',
+                              'Please enter valid details',
+                            );
                           }
                         },
                       ),
