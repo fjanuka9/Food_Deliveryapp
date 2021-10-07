@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/components/custom_button.dart';
 import 'package:foodapp/components/custom_dialogbox.dart';
 import 'package:foodapp/components/custom_header.dart';
+import 'package:foodapp/components/custom_loader.dart';
 import 'package:foodapp/components/custom_text_field.dart';
 import 'package:foodapp/controllers/auth_controller.dart';
-import 'package:foodapp/screens/login_screen/login_screen.dart';
 import 'package:foodapp/utils/app_colors.dart';
-import 'package:foodapp/utils/util_function.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -28,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _phonenumber = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -145,27 +145,35 @@ class _RegisterPageState extends State<RegisterPage> {
                       SizedBox(
                         height: 35,
                       ),
-                      CustomButton(
-                        text: "Register",
-                        onTap: () async {
-                          if (inputValidation()) {
-                            await AuthController().registerUser(
-                              context,
-                              _email.text,
-                              _password.text,
-                              _name.text,
-                              _phonenumber.text,
-                            );
-                          } else {
-                            DialogBox().dialogBox(
-                              context,
-                              DialogType.ERROR,
-                              'Incorrect information.',
-                              'Please enter valid details',
-                            );
-                          }
-                        },
-                      ),
+                      isLoading
+                          ? Center(child: CustomLoader())
+                          : CustomButton(
+                              text: "Register",
+                              onTap: () async {
+                                if (inputValidation()) {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
+                                  await AuthController().registerUser(
+                                    context,
+                                    _email.text,
+                                    _password.text,
+                                    _name.text,
+                                    _phonenumber.text,
+                                  );
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                } else {
+                                  DialogBox().dialogBox(
+                                    context,
+                                    DialogType.ERROR,
+                                    'Incorrect information.',
+                                    'Please enter valid details',
+                                  );
+                                }
+                              },
+                            ),
                     ],
                   ),
                 ),
