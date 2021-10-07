@@ -12,13 +12,15 @@ class DataBaseController {
     String name,
     String phonenumber,
     String email,
+    String uid,
   ) {
-    // Call the user's CollectionReference to add a new user
     return users
-        .add({
+        .doc('uid')
+        .set({
           'name': name,
           'phone': phonenumber,
           'email': email,
+          'uid': uid,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
