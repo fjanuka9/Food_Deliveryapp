@@ -17,20 +17,19 @@ class AuthController {
     String password,
     String name,
     String phonenumber,
+
+    //Create user with email and password
   ) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      )
-          .whenComplete(() async {
-        await DataBaseController().saveUserData(
-          name,
-          phonenumber,
-          email,
-        );
-      });
+      );
+      if (userCredential.user!.uid.isNotEmpty)
+        await DataBaseController()
+            .saveUserData(name, phonenumber, email, userCredential.user!.uid);
+
       DialogBox().dialogBox(
         context,
         DialogType.SUCCES,
@@ -92,5 +91,29 @@ class AuthController {
         );
       }
     }
+  }
+
+  // Send password reset email function
+  Future<void>? SendPasswordResetEmail(
+      BuildContext context, String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'Invalid email') {
+        DialogBox().dialogBox(
+          context,
+          DialogType.ERROR,
+          'Invalid email.',
+          'Please enter valid email',
+        );
+      } else {
+        DialogBox().dialogBox(
+          context,
+          DialogType.ERROR,
+          'Error',
+          e.toString(),
+        );
+      }
+    } catch (e) {}
   }
 }
