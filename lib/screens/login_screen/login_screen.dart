@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/components/custom_button.dart';
 import 'package:foodapp/components/custom_dialogbox.dart';
 import 'package:foodapp/components/custom_header.dart';
+import 'package:foodapp/components/custom_loader.dart';
 import 'package:foodapp/components/custom_text_field.dart';
 import 'package:foodapp/controllers/auth_controller.dart';
+import 'package:foodapp/screens/login_screen/fogot_password.dart';
 import 'package:foodapp/screens/login_screen/register_screen.dart';
 import 'package:foodapp/utils/app_colors.dart';
 import 'package:foodapp/utils/constants.dart';
@@ -28,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   final _password = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -179,25 +182,34 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 35,
                           ),
-                          CustomButton(
-                            text: "Sign In",
-                            onTap: () async {
-                              if (inpuValidation()) {
-                                await AuthController().loginUser(
-                                  context,
-                                  _email.text,
-                                  _password.text,
-                                );
-                              } else {
-                                DialogBox().dialogBox(
-                                  context,
-                                  DialogType.ERROR,
-                                  'Incorrect information.',
-                                  'Please enter valid details',
-                                );
-                              }
-                            },
-                          ),
+                          isLoading
+                              ? CustomLoader()
+                              : CustomButton(
+                                  text: "Sign In",
+                                  onTap: () async {
+                                    if (inpuValidation()) {
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+
+                                      AuthController().loginUser(
+                                        context,
+                                        _email.text,
+                                        _password.text,
+                                      );
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                    } else {
+                                      DialogBox().dialogBox(
+                                        context,
+                                        DialogType.ERROR,
+                                        'Incorrect information.',
+                                        'Please enter valid details',
+                                      );
+                                    }
+                                  },
+                                ),
                           SizedBox(
                             height: 20,
                           ),
@@ -225,6 +237,20 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ]),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                UtilFunction.navigateTo(
+                                    context, FogotPassword());
+                              },
+                              child: Text(
+                                'Fogot Password',
+                              ),
                             ),
                           ),
                         ],
