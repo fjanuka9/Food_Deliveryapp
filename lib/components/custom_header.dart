@@ -8,14 +8,16 @@ class CustomHeader extends StatelessWidget {
     Key? key,
     required this.size,
     required this.image,
-    required this.header,
-    required this.tagline,
+    this.header,
+    this.tagline,
+    this.widget,
   }) : super(key: key);
 
   final Size size;
   final String image;
-  final String header;
-  final String tagline;
+  final String? header;
+  final String? tagline;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +30,31 @@ class CustomHeader extends StatelessWidget {
           width: size.width,
           fit: BoxFit.fitWidth,
         ),
-        Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 59,
-              ),
-              Text(
-                header,
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  color: fontcolorblack,
-                  fontWeight: FontWeight.w600,
+        widget == null
+            ? Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 59,
+                    ),
+                    Text(
+                      header ?? "",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          color: kblack,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      tagline ?? "",
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          color: kblack,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                tagline,
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: fontcolorblack,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ),
+              )
+            : widget!,
       ],
     );
   }
