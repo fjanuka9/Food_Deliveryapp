@@ -46,7 +46,7 @@ class _FogotPasswordState extends State<FogotPassword> {
                     'Email',
                     style: GoogleFonts.poppins(
                       fontSize: 16,
-                      color: fontcolorblack,
+                      color: kblack,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -86,6 +86,14 @@ class _FogotPasswordState extends State<FogotPassword> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Text('Login Here',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                )),
           ],
         ),
       ),
