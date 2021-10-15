@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/utils/app_colors.dart';
 
-// ignore: must_be_immutable
 class CutomTextField extends StatelessWidget {
   CutomTextField({
     Key? key,
-    required this.controller,
+    this.controller,
+    this.preffix,
+    this.hintText,
   }) : super(key: key);
-  var controller = TextEditingController();
+  final TextEditingController? controller;
+  final Widget? preffix;
+  final String? hintText;
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -16,21 +19,19 @@ class CutomTextField extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: kwhite,
+          prefixIcon: preffix,
+          hintText: hintText,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(
               10,
             ),
-            borderSide: BorderSide(
-              color: kwhite,
-            ),
+            borderSide: BorderSide(color: kwhite),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(
               10,
             ),
-            borderSide: BorderSide(
-              color: Colors.red,
-            ),
+            borderSide: BorderSide(color: Colors.red),
           ),
         ),
       ),
