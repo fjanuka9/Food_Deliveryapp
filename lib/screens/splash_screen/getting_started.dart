@@ -183,7 +183,7 @@ class bottomSection extends StatelessWidget {
                   child: Text(
                     'Next',
                     style: TextStyle(
-                      color: fontcolorblack,
+                      color: kblack,
                     ),
                   ),
                 ),
@@ -198,7 +198,7 @@ class bottomSection extends StatelessWidget {
                     'Skip',
                     style: TextStyle(
                       fontSize: 16,
-                      color: fontcolorblack,
+                      color: kblack,
                     ),
                   ),
                 ),
