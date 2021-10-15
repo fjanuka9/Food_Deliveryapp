@@ -8,6 +8,7 @@ import 'package:foodapp/components/custom_button.dart';
 import 'package:foodapp/components/custom_dialogbox.dart';
 import 'package:foodapp/components/custom_header.dart';
 import 'package:foodapp/components/custom_loader.dart';
+import 'package:foodapp/components/custom_text.dart';
 import 'package:foodapp/components/custom_text_field.dart';
 import 'package:foodapp/controllers/auth_controller.dart';
 import 'package:foodapp/screens/login_screen/fogot_password.dart';
@@ -118,13 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Email',
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              color: fontcolorblack,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          CustomText(
+                            text: 'Email',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
                           SizedBox(
                             height: 6,
@@ -132,13 +130,11 @@ class _LoginPageState extends State<LoginPage> {
                           CutomTextField(
                             controller: _email,
                           ),
-                          Text(
-                            'Password',
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              color: fontcolorblack,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          CustomText(
+                            text: 'Password',
+                            fontSize: 16,
+                            color: kblack,
+                            fontWeight: FontWeight.w500,
                           ),
                           SizedBox(
                             width: double.infinity,
@@ -232,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                                     },
                                   style: GoogleFonts.poppins(
                                     fontSize: 15,
-                                    color: fontcolorblack,
+                                    color: kblack,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
