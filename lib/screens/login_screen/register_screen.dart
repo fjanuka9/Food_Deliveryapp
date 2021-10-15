@@ -5,10 +5,12 @@ import 'package:foodapp/components/custom_button.dart';
 import 'package:foodapp/components/custom_dialogbox.dart';
 import 'package:foodapp/components/custom_header.dart';
 import 'package:foodapp/components/custom_loader.dart';
+import 'package:foodapp/components/custom_text.dart';
 import 'package:foodapp/components/custom_text_field.dart';
 import 'package:foodapp/controllers/auth_controller.dart';
+import 'package:foodapp/screens/login_screen/login_screen.dart';
 import 'package:foodapp/utils/app_colors.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:foodapp/utils/util_function.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
@@ -53,13 +55,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Name',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: fontcolorblack,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      CustomText(
+                        text: 'Name',
+                        fontSize: 16,
+                        color: kblack,
+                        fontWeight: FontWeight.w500,
                       ),
                       SizedBox(
                         height: 6,
@@ -67,13 +67,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       CutomTextField(
                         controller: _name,
                       ),
-                      Text(
-                        'Email',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: fontcolorblack,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      CustomText(
+                        text: 'Email',
+                        fontSize: 16,
+                        color: kblack,
+                        fontWeight: FontWeight.w500,
                       ),
                       SizedBox(
                         height: 6,
@@ -81,13 +79,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       CutomTextField(
                         controller: _email,
                       ),
-                      Text(
-                        'Phone Number',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: fontcolorblack,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      CustomText(
+                        text: 'Phone Number',
+                        fontSize: 16,
+                        color: kblack,
+                        fontWeight: FontWeight.w500,
                       ),
                       SizedBox(
                         height: 6,
@@ -95,13 +91,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       CutomTextField(
                         controller: _phonenumber,
                       ),
-                      Text(
-                        'Password',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: fontcolorblack,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      CustomText(
+                        text: 'Password',
+                        fontSize: 16,
+                        color: kblack,
+                        fontWeight: FontWeight.w500,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -164,6 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   setState(() {
                                     isLoading = false;
                                   });
+                                  UtilFunction.navigateTo(context, LoginPage());
                                 } else {
                                   DialogBox().dialogBox(
                                     context,
