@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
           child: Text(
             text,
             style: GoogleFonts.poppins(
-              color: fontcolorblack,
+              color: kblack,
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
