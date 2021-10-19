@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:foodapp/components/custom_dialogbox.dart';
 import 'package:foodapp/controllers/db_controller.dart';
-import 'package:foodapp/screens/home_screen/home_page.dart';
+import 'package:foodapp/screens/main_screen/home_screen/home_page.dart';
+
 import 'package:foodapp/utils/util_function.dart';
 
 class AuthController {
@@ -26,9 +27,10 @@ class AuthController {
         email: email,
         password: password,
       );
-      if (userCredential.user!.uid.isNotEmpty)
+      if (userCredential.user!.uid.isNotEmpty) {
         await DataBaseController()
             .saveUserData(name, phonenumber, email, userCredential.user!.uid);
+      }
 
       DialogBox().dialogBox(
         context,
@@ -53,7 +55,7 @@ class AuthController {
         );
       }
     } catch (e) {
-      print(e);
+      (e);
     }
   }
 
@@ -72,7 +74,7 @@ class AuthController {
       );
 
       if (userCredential.user != null) {
-        UtilFunction.navigateTo(context, Homepage());
+        UtilFunction.navigateTo(context, const Homepage());
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -94,7 +96,7 @@ class AuthController {
   }
 
   // Send password reset email function
-  Future<void>? SendPasswordResetEmail(
+  Future<void>? sendPasswordResetEmail(
       BuildContext context, String email) async {
     try {
       await auth.sendPasswordResetEmail(email: email);
@@ -114,6 +116,7 @@ class AuthController {
           e.toString(),
         );
       }
+      // ignore: empty_catches
     } catch (e) {}
   }
 }

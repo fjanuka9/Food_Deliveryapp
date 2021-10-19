@@ -8,7 +8,7 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SpinKitChasingDots(
+    return const SpinKitChasingDots(
       color: Colors.green,
       size: 30,
     );

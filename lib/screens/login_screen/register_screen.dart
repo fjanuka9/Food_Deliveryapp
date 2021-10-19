@@ -38,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: FadeInRight(
         child: Container(
           height: size.height,
-          color: Color(0xffE5E5E5),
+          color: const Color(0xffE5E5E5),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -49,49 +49,49 @@ class _RegisterPageState extends State<RegisterPage> {
                   image: 'top.png',
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 40,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(
+                      const CustomText(
                         text: 'Name',
                         fontSize: 16,
                         color: kblack,
                         fontWeight: FontWeight.w500,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       CutomTextField(
                         controller: _name,
                       ),
-                      CustomText(
+                      const CustomText(
                         text: 'Email',
                         fontSize: 16,
                         color: kblack,
                         fontWeight: FontWeight.w500,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       CutomTextField(
                         controller: _email,
                       ),
-                      CustomText(
+                      const CustomText(
                         text: 'Phone Number',
                         fontSize: 16,
                         color: kblack,
                         fontWeight: FontWeight.w500,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       CutomTextField(
                         controller: _phonenumber,
                       ),
-                      CustomText(
+                      const CustomText(
                         text: 'Password',
                         fontSize: 16,
                         color: kblack,
@@ -121,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(
                                 10,
                               ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: kwhite,
                               ),
                             ),
@@ -129,18 +129,18 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(
                                 10,
                               ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.red,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 35,
                       ),
                       isLoading
-                          ? Center(child: CustomLoader())
+                          ? const Center(child: CustomLoader())
                           : CustomButton(
                               text: "Register",
                               onTap: () async {
@@ -158,7 +158,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                   setState(() {
                                     isLoading = false;
                                   });
-                                  UtilFunction.navigateTo(context, LoginPage());
+                                  UtilFunction.navigateTo(
+                                      context, const LoginPage());
                                 } else {
                                   DialogBox().dialogBox(
                                     context,

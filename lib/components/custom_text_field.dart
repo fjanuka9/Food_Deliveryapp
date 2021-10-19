@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/utils/app_colors.dart';
 
 class CutomTextField extends StatelessWidget {
-  CutomTextField({
+  const CutomTextField({
     Key? key,
     this.controller,
     this.preffix,
@@ -11,6 +11,7 @@ class CutomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final Widget? preffix;
   final String? hintText;
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -25,13 +26,13 @@ class CutomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               10,
             ),
-            borderSide: BorderSide(color: kwhite),
+            borderSide: const BorderSide(color: kwhite),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(
               10,
             ),
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: const BorderSide(color: Colors.red),
           ),
         ),
       ),

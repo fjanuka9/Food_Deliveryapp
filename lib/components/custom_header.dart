@@ -34,7 +34,7 @@ class CustomHeader extends StatelessWidget {
             ? Center(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 59,
                     ),
                     Text(

@@ -26,7 +26,7 @@ class _FogotPasswordState extends State<FogotPassword> {
     return Scaffold(
       body: Container(
         height: size.height,
-        color: Color(0xffE5E5E5),
+        color: const Color(0xffE5E5E5),
         child: Column(
           children: [
             CustomHeader(
@@ -36,7 +36,7 @@ class _FogotPasswordState extends State<FogotPassword> {
               image: 'top.png',
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 30,
               ),
               child: Column(
@@ -50,17 +50,17 @@ class _FogotPasswordState extends State<FogotPassword> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   CutomTextField(
                     controller: _email,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 35,
                   ),
                   isLoading
-                      ? CustomLoader()
+                      ? const CustomLoader()
                       : CustomButton(
                           text: "Send reset password email",
                           onTap: () async {
@@ -69,7 +69,7 @@ class _FogotPasswordState extends State<FogotPassword> {
                                 isLoading = true;
                               });
                               await AuthController()
-                                  .SendPasswordResetEmail(context, _email.text);
+                                  .sendPasswordResetEmail(context, _email.text);
                               setState(() {
                                 isLoading = false;
                               });
@@ -86,10 +86,10 @@ class _FogotPasswordState extends State<FogotPassword> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text('Login Here',
+            const Text('Login Here',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

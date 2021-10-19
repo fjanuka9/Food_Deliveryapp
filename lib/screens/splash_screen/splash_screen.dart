@@ -15,8 +15,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () {
-      UtilFunction.navigateTo(context, GettingStarted());
+    Future.delayed(const Duration(seconds: 5), () {
+      UtilFunction.navigateTo(context, const GettingStarted());
     });
   }
 
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

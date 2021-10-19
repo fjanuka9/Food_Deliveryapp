@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       body: FadeInRight(
         child: Container(
           height: size.height,
-          color: Color(0xffE5E5E5),
+          color: const Color(0xffE5E5E5),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                   tagline: 'Access Account',
                   image: 'top.png',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Column(
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                             primary: kwhite,
                             elevation: 2,
-                            padding: EdgeInsets.all(
+                            padding: const EdgeInsets.all(
                               20,
                             ),
                             shape: RoundedRectangleBorder(
@@ -77,14 +77,14 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: kwhite,
                             elevation: 2,
-                            padding: EdgeInsets.all(
+                            padding: const EdgeInsets.all(
                               20,
                             ),
                             shape: RoundedRectangleBorder(
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text(
@@ -113,24 +113,24 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 30,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(
+                          const CustomText(
                             text: 'Email',
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           CutomTextField(
                             controller: _email,
                           ),
-                          CustomText(
+                          const CustomText(
                             text: 'Password',
                             fontSize: 16,
                             color: kblack,
@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(
                                     10,
                                   ),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: kwhite,
                                   ),
                                 ),
@@ -168,18 +168,18 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(
                                     10,
                                   ),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.red,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 35,
                           ),
                           isLoading
-                              ? CustomLoader()
+                              ? const CustomLoader()
                               : CustomButton(
                                   text: "Sign In",
                                   onTap: () async {
@@ -206,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                                     }
                                   },
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Center(
@@ -224,7 +224,7 @@ class _LoginPageState extends State<LoginPage> {
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       UtilFunction.navigateTo(
-                                          context, RegisterPage());
+                                          context, const RegisterPage());
                                     },
                                   style: GoogleFonts.poppins(
                                     fontSize: 15,
@@ -235,16 +235,16 @@ class _LoginPageState extends State<LoginPage> {
                               ]),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Center(
                             child: GestureDetector(
                               onTap: () {
                                 UtilFunction.navigateTo(
-                                    context, FogotPassword());
+                                    context, const FogotPassword());
                               },
-                              child: Text(
+                              child: const Text(
                                 'Fogot Password',
                               ),
                             ),

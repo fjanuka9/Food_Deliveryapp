@@ -22,7 +22,9 @@ class DataBaseController {
           'email': email,
           'uid': uid,
         })
+        // ignore: avoid_print
         .then((value) => print("User Added"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to add user: $error"));
   }
 }

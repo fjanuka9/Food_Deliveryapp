@@ -17,18 +17,18 @@ class GettingStarted extends StatefulWidget {
 class _GettingStartedState extends State<GettingStarted> {
   CarouselController carouselController = CarouselController();
   List<Widget> list = [
-    SliderItem(
+    const SliderItem(
       img: 'popcorn.png',
       text1: 'Choose A Tasty Dish',
       text2: 'Order anything you want from your\n Favorite restaurant.',
     ),
-    SliderItem(
+    const SliderItem(
       img: 'money.png',
       text1: 'Easy Payment',
       text2:
           'Payment made easy through debit\n card, credit card  & more ways to pay\n for your food',
     ),
-    SliderItem(
+    const SliderItem(
       img: 'restaurant.png',
       text1: 'Enjoy the Taste!',
       text2:
@@ -40,7 +40,7 @@ class _GettingStartedState extends State<GettingStarted> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: size.width,
         height: size.height,
         child: Column(
@@ -58,10 +58,8 @@ class _GettingStartedState extends State<GettingStarted> {
               items: list.map((i) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return Container(
-                      child: Column(
-                        children: [i],
-                      ),
+                    return Column(
+                      children: [i],
                     );
                   },
                 );
@@ -75,8 +73,8 @@ class _GettingStartedState extends State<GettingStarted> {
                   child: Container(
                     width: 12.0,
                     height: 12.0,
-                    margin:
-                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 4.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: _current == entry.key ? primarycolor : greycolor,
@@ -85,7 +83,7 @@ class _GettingStartedState extends State<GettingStarted> {
                 );
               }).toList(),
             ),
-            bottomSection(
+            BottomSection(
               size: size,
               ontap: () => carouselController.nextPage(),
             ),
@@ -117,7 +115,7 @@ class SliderItem extends StatelessWidget {
             img,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 37,
         ),
         Text(
@@ -126,24 +124,24 @@ class SliderItem extends StatelessWidget {
             fontSize: 22,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           text2,
+          textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             fontSize: 14,
             color: greycolor,
           ),
-          textAlign: TextAlign.center,
         ),
       ],
     );
   }
 }
 
-class bottomSection extends StatelessWidget {
-  const bottomSection({
+class BottomSection extends StatelessWidget {
+  const BottomSection({
     Key? key,
     required this.size,
     required this.ontap,
@@ -154,59 +152,57 @@ class bottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-          Image.asset(
-            Constants.imageAsset(
-              'bottom.png',
-            ),
-            width: size.width,
-            fit: BoxFit.fitWidth,
+    return Stack(
+      children: [
+        Image.asset(
+          Constants.imageAsset(
+            'bottom.png',
           ),
-          Positioned(
-            right: 43,
-            bottom: 39,
-            child: Row(
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: kwhite,
-                    padding: EdgeInsets.all(10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        12,
-                      ),
-                    ),
-                  ),
-                  onPressed: ontap,
-                  child: Text(
-                    'Next',
-                    style: TextStyle(
-                      color: kblack,
+          width: size.width,
+          fit: BoxFit.fitWidth,
+        ),
+        Positioned(
+          right: 43,
+          bottom: 39,
+          child: Row(
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: kwhite,
+                  padding: const EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      12,
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 5,
-                ),
-                TextButton(
-                  onPressed: () {
-                    UtilFunction.navigateTo(context, LoginPage());
-                  },
-                  child: Text(
-                    'Skip',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: kblack,
-                    ),
+                onPressed: ontap,
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    color: kblack,
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              TextButton(
+                onPressed: () {
+                  UtilFunction.navigateTo(context, const LoginPage());
+                },
+                child: const Text(
+                  'Skip',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: kblack,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
